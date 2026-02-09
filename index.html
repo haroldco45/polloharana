@@ -3,291 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POLLO HARANA - Picadas</title>
+    <title>POLLO HARANA - Menú Inteligente</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-primario: #4a1c1c; /* Marrón institucional */
-            --color-secundario: #ffcc00; /* Amarillo/Dorado */
-            --color-fondo: #f4f1ea;
-            --color-texto: #333;
-            --color-blanco: #ffffff;
-            --color-whatsapp: #25d366;
+            --primario: #4a1c1c;
+            --secundario: #ffcc00;
+            --fondo: #f4f1ea;
+            --whatsapp: #25d366;
+            --blanco: #ffffff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--fondo); padding-bottom: 100px; }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--color-fondo);
-            color: var(--color-texto);
-            line-height: 1.6;
-        }
-
-        /* Header Estilo Criollitas */
         header {
-            background-color: var(--color-primario);
-            padding: 40px 20px;
+            background: var(--primario);
+            padding: 30px 20px;
             text-align: center;
-            border-bottom: 5px solid var(--color-secundario);
             border-radius: 0 0 40px 40px;
+            color: white;
+            border-bottom: 5px solid var(--secundario);
         }
 
-        .logo-container img {
-            max-width: 180px;
-            height: auto;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-        }
+        .logo { max-width: 120px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
 
-        .info-negocio h1 {
-            color: var(--color-secundario);
-            font-size: 2.2rem;
-            text-transform: uppercase;
-            margin-top: 15px;
-            font-weight: 800;
-        }
-
-        .eslogan {
-            color: var(--color-blanco);
-            font-style: italic;
-            font-size: 1rem;
-        }
-
-        /* Barra de contacto responsiva */
-        .contacto-info {
-            background: var(--color-blanco);
-            margin: -25px 20px 20px 20px;
-            padding: 15px;
+        /* Formulario de Datos del Cliente */
+        #seccion-datos {
+            background: var(--blanco);
+            margin: 20px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            font-size: 0.9rem;
-            border: 1px solid #ddd;
         }
 
-        .contacto-info p {
-            margin: 5px 0;
-            font-weight: 700;
-            color: var(--color-primario);
+        .input-grupo { margin-bottom: 10px; }
+        .input-grupo label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; }
+        input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; }
+
+        #info-cliente-guardada {
+            display: none;
+            background: #eee;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin: 10px 20px;
+            font-size: 0.75rem;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Grid de Picadas */
+        /* Menú de Productos */
         .contenedor-menu {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            gap: 20px;
             padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        /* Tarjeta Estilo Premium */
         .card {
-            background: var(--color-blanco);
+            background: var(--blanco);
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: center;
             display: flex;
             flex-direction: column;
-            border: 1px solid #eee;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 4px solid var(--secundario); }
+        .card-body { padding: 20px; }
+        .precio { font-size: 1.5rem; font-weight: 800; color: var(--primario); }
 
-        .card-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 4px solid var(--color-secundario);
-        }
-
-        .card-body {
-            padding: 25px;
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .card-body h2 {
-            font-size: 1.6rem;
-            color: var(--color-primario);
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        .card-body p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        /* Detalles desplegables limpios */
-        details {
-            text-align: left;
-            margin-bottom: 20px;
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 15px;
-        }
-
-        summary {
-            font-weight: 700;
-            color: var(--color-primario);
-            cursor: pointer;
-            outline: none;
-        }
-
-        details ul {
-            list-style: none;
-            padding: 10px 0 0 0;
-            font-size: 0.85rem;
-        }
-
-        details li::before {
-            content: "🍗";
-            margin-right: 8px;
-        }
-
-        /* Botón WhatsApp */
-        .btn-wa {
-            display: block;
-            background-color: var(--color-whatsapp);
+        .btn-agregar {
+            background: var(--primario);
             color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Carrito Flotante */
+        #carrito-flotante {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--blanco);
+            padding: 20px;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .item-carrito {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .controles-qty { display: flex; gap: 10px; align-items: center; }
+        .btn-qty { background: #ddd; border: none; width: 25px; height: 25px; border-radius: 5px; font-weight: bold; }
+
+        .btn-enviar-wa {
+            background: var(--whatsapp);
+            color: white;
+            width: 100%;
             padding: 15px;
             border-radius: 20px;
             text-decoration: none;
-            font-weight: 800;
-            font-size: 1rem;
-            transition: background 0.3s;
-        }
-
-        .btn-wa:hover {
-            background-color: #1ebea5;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--color-primario);
-            color: var(--color-blanco);
+            display: block;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-            border-radius: 40px 40px 0 0;
-        }
-
-        .vp-brand {
-            color: var(--color-secundario);
-            text-decoration: none;
             font-weight: 800;
+            margin-top: 15px;
         }
 
-        /* Ajustes Celular */
-        @media (max-width: 600px) {
-            .info-negocio h1 { font-size: 1.8rem; }
-            .contenedor-menu { padding: 10px; }
-            .card { border-radius: 25px; }
-        }
+        .total-pago { font-weight: 800; font-size: 1.2rem; text-align: right; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px; }
+        
+        footer { text-align: center; font-size: 0.7rem; color: #888; margin-top: 20px; padding-bottom: 120px; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
-            <img src="pollo-harana.png" alt="POLLO HARANA">
-        </div>
-        <div class="info-negocio">
-            <h1>POLLO HARANA</h1>
-            <p class="eslogan">El Rey del Asado, Papá</p>
-        </div>
+        <img src="pollo-harana.png" alt="Logo" class="logo">
+        <h1>POLLO HARANA</h1>
+        <p><i>El Rey del Asado, Papá</i></p>
     </header>
 
-    <div class="contacto-info">
-        <p>📍 Carretera Troncal Caucasia diagonal a la Cámara de Comercio</p>
-        <p>📞 Celular: 3103540921</p>
+    <div id="seccion-datos">
+        <h3>Tus Datos de Entrega</h3>
+        <p style="font-size: 0.7rem; color: #666; margin-bottom: 10px;">Solo los pedimos la primera vez.</p>
+        <div class="input-grupo">
+            <label>Nombre Completo</label>
+            <input type="text" id="nombre" placeholder="Ej: Juan Pérez">
+        </div>
+        <div class="input-grupo">
+            <label>Dirección Exacta / Barrio</label>
+            <input type="text" id="direccion" placeholder="Ej: Calle 5 #10-20">
+        </div>
+        <div class="input-grupo">
+            <label>Celular</label>
+            <input type="tel" id="celular" placeholder="Ej: 310...">
+        </div>
+        <button onclick="guardarDatos()" class="btn-agregar" style="background: var(--whatsapp);">GUARDAR DATOS</button>
+    </div>
+
+    <div id="info-cliente-guardada">
+        <span id="texto-cliente"></span>
+        <button onclick="editarDatos()" style="border:none; background:none; color:blue; text-decoration:underline; cursor:pointer;">Editar</button>
     </div>
 
     <main class="contenedor-menu">
+        <div class="card">
+            <img src="https://via.placeholder.com/400x300?text=Picada+25k" alt="Picada 25">
+            <div class="card-body">
+                <p class="precio">$25.000</p>
+                <h3>Picada 25k</h3>
+                <button class="btn-agregar" onclick="agregarAlCarrito('Picada 25k', 25000)">+ AGREGAR</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/400x300?text=Picada+30k" alt="Picada 30">
+            <div class="card-body">
+                <p class="precio">$30.000</p>
+                <h3>Picada 30k</h3>
+                <button class="btn-agregar" onclick="agregarAlCarrito('Picada 30k', 30000)">+ AGREGAR</button>
+            </div>
+        </div>
         
         <div class="card">
-            <img src="https://via.placeholder.com/400x300?text=Picada+25k" alt="Picada 25.000" class="card-img">
+            <img src="https://via.placeholder.com/400x300?text=Picada+50k" alt="Picada 50">
             <div class="card-body">
-                <h2>Picada 25.000</h2>
-                <p>La combinación perfecta para empezar el día con sabor.</p>
-                <details>
-                    <summary>Ver Ingredientes</summary>
-                    <ul>
-                        <li>Papas fritas crocantes</li>
-                        <li>Carne de cerdo seleccionada</li>
-                        <li>Salchicha y Chorizo parrillero</li>
-                        <li>Queso y Huevos de codorniz</li>
-                    </ul>
-                </details>
-                <a href="https://wa.me/573103540921?text=Hola!%20Deseo%20pedir%20la%20Picada%20de%2025.000" class="btn-wa">ORDENAR AHORA</a>
+                <p class="precio">$50.000</p>
+                <h3>Picada 50k</h3>
+                <button class="btn-agregar" onclick="agregarAlCarrito('Picada 50k', 50000)">+ AGREGAR</button>
             </div>
         </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/400x300?text=Picada+30k" alt="Picada 30.000" class="card-img">
-            <div class="card-body">
-                <h2>Picada 30.000</h2>
-                <p>Más ingredientes para los amantes del buen comer.</p>
-                <details>
-                    <summary>Ver Ingredientes</summary>
-                    <ul>
-                        <li>Base de la picada 25k</li>
-                        <li>Butifarra costeña</li>
-                        <li>Tocineta ahumada</li>
-                    </ul>
-                </details>
-                <a href="https://wa.me/573103540921?text=Hola!%20Deseo%20pedir%20la%20Picada%20de%2030.000" class="btn-wa">ORDENAR AHORA</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/400x300?text=Picada+40k" alt="Picada 40.000" class="card-img">
-            <div class="card-body">
-                <h2>Picada 40.000</h2>
-                <p>Ideal para compartir con esa persona especial.</p>
-                <details>
-                    <summary>Ver Ingredientes</summary>
-                    <ul>
-                        <li>Todo lo anterior</li>
-                        <li>Porción generosa de Pollo asado</li>
-                    </ul>
-                </details>
-                <a href="https://wa.me/573103540921?text=Hola!%20Deseo%20pedir%20la%20Picada%20de%2040.000" class="btn-wa">ORDENAR AHORA</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/400x300?text=Picada+50k" alt="Picada 50.000" class="card-img">
-            <div class="card-body">
-                <h2>Picada 50.000</h2>
-                <p>¡La joya de la corona! La más completa de la casa.</p>
-                <details>
-                    <summary>Ver Ingredientes</summary>
-                    <ul>
-                        <li>Morcilla premium</li>
-                        <li>Tocineta, Pollo, Cerdo</li>
-                        <li>Arepa y todos los acompañantes</li>
-                    </ul>
-                </details>
-                <a href="https://wa.me/573103540921?text=Hola!%20Deseo%20pedir%20la%20Picada%20de%2050.000" class="btn-wa">ORDENAR AHORA</a>
-            </div>
-        </div>
-
     </main>
 
     <footer>
-        <p>&copy; 2026 <strong>POLLO HARANA</strong>. Todos los derechos reservados.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem;">Desarrollado con ✨ por <a href="#" class="vp-brand">VIBRAS POSITIVAS</a></p>
+        APP DESARROLLADA POR VIBRAS POSITIVAS
     </footer>
 
+    <div id="carrito-flotante" style="display: none;">
+        <h3 style="font-size: 1rem; margin-bottom: 10px;">Tu Pedido Actual:</h3>
+        <div id="lista-carrito"></div>
+        <div class="total-pago">Total: $<span id="total-monto">0</span></div>
+        <a href="#" onclick="enviarWhatsApp()" class="btn-enviar-wa">ENVIAR PEDIDO A WHATSAPP</a>
+    </div>
+
+    <script>
+        let carrito = [];
+
+        // Lógica de Datos del Cliente
+        window.onload = function() {
+            if(localStorage.getItem('clienteNombre')) {
+                mostrarInfoGuardada();
+            }
+        };
+
+        function guardarDatos() {
+            const n = document.getElementById('nombre').value;
+            const d = document.getElementById('direccion').value;
+            const c = document.getElementById('celular').value;
+            
+            if(n && d && c) {
+                localStorage.setItem('clienteNombre', n);
+                localStorage.setItem('clienteDir', d);
+                localStorage.setItem('clienteCel', c);
+                mostrarInfoGuardada();
+            } else {
+                alert("Por favor llena todos los datos");
+            }
+        }
+
+        function mostrarInfoGuardada() {
+            document.getElementById('seccion-datos').style.display = 'none';
+            document.getElementById('info-cliente-guardada').style.display = 'flex';
+            document.getElementById('texto-cliente').innerText = `Entregar a: ${localStorage.getItem('clienteNombre')} | ${localStorage.getItem('clienteDir')}`;
+        }
+
+        function editarDatos() {
+            document.getElementById('seccion-datos').style.display = 'block';
+            document.getElementById('info-cliente-guardada').style.display = 'none';
+        }
+
+        // Lógica del Carrito
+        function agregarAlCarrito(nombre, precio) {
+            const itemExistente = carrito.find(item => item.nombre === nombre);
+            if(itemExistente) {
+                itemExistente.cantidad++;
+            } else {
+                carrito.push({nombre, precio, cantidad: 1});
+            }
+            renderCarrito();
+        }
+
+        function cambiarCant(nombre, delta) {
+            const item = carrito.find(i => i.nombre === nombre);
+            item.cantidad += delta;
+            if(item.cantidad < 1) {
+                carrito = carrito.filter(i => i.nombre !== nombre);
+            }
+            renderCarrito();
+        }
+
+        function renderCarrito() {
+            const lista = document.getElementById('lista-carrito');
+            const flotante = document.getElementById('carrito-flotante');
+            lista.innerHTML = '';
+            let total = 0;
+
+            if(carrito.length > 0) {
+                flotante.style.display = 'block';
+                carrito.forEach(item => {
+                    total += (item.precio * item.cantidad);
+                    lista.innerHTML += `
+                        <div class="item-carrito">
+                            <span>${item.nombre} ($${item.precio.toLocaleString()})</span>
+                            <div class="controles-qty">
+                                <button class="btn-qty" onclick="cambiarCant('${item.nombre}', -1)">-</button>
+                                <strong>${item.cantidad}</strong>
+                                <button class="btn-qty" onclick="cambiarCant('${item.nombre}', 1)">+</button>
+                            </div>
+                        </div>`;
+                });
+                document.getElementById('total-monto').innerText = total.toLocaleString();
+            } else {
+                flotante.style.display = 'none';
+            }
+        }
+
+        function enviarWhatsApp() {
+            if(!localStorage.getItem('clienteNombre')) {
+                alert("Primero guarda tus datos de entrega.");
+                return;
+            }
+
+            let texto = `*FACTURA DE PEDIDO - POLLO HARANA*\n`;
+            texto += `--------------------------------\n`;
+            texto += `*CLIENTE:* ${localStorage.getItem('clienteNombre')}\n`;
+            texto += `*DIRECCIÓN:* ${localStorage.getItem('clienteDir')}\n`;
+            texto += `*CELULAR:* ${localStorage.getItem('clienteCel')}\n`;
+            texto += `--------------------------------\n`;
+            
+            let total = 0;
+            carrito.forEach(item => {
+                let subtotal = item.precio * item.cantidad;
+                total += subtotal;
+                texto += `${item.cantidad}x ${item.nombre} - Unid: $${item.precio.toLocaleString()} | Sub: *$${subtotal.toLocaleString()}*\n`;
+            });
+
+            texto += `--------------------------------\n`;
+            texto += `*TOTAL A PAGAR: $${total.toLocaleString()}*\n\n`;
+            texto += `_App desarrollada por Vibras Positivas_`;
+
+            const link = `https://wa.me/573103540921?text=${encodeURIComponent(texto)}`;
+            window.open(link, '_blank');
+        }
+    </script>
 </body>
 </html>
